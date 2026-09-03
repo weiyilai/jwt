@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JWT.Tests
 {
@@ -6,13 +7,10 @@ namespace JWT.Tests
     public class TargetFrameworkTests
     {
         [TestMethod]
-#if NET6_0_OR_GREATER
-        [ExpectedException(typeof(System.InvalidOperationException))]
-#endif
         public void Build_Must_Fail_When_TargetFramework_Is_Incorrect()
         {
 #if NET6_0_OR_GREATER
-            throw new System.InvalidOperationException();
+            Assert.Throws<InvalidOperationException>(() => throw new InvalidOperationException());
 #endif
         }
     }
